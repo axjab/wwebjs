@@ -1,0 +1,8 @@
+
+REPOSITORY_URL=https://github.com/owner/repository.git
+GITHUB_TOKEN=github_pat_xxxxxxxxx
+
+NTFY_URL=https://ntfy.example.com/my-topic
+NTFY_TOKEN=tk_xxxxxxxxx
+
+# NOTE: NTFY_TOKEN is "Bearer {{ntfy token}}" encoded in base64 WITHOUT trailing newline

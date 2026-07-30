@@ -1,0 +1,22 @@
+
+services:
+  wwebjs:
+    container_name: wwebjs
+    image: ghcr.io/axjab/wwebjs
+    restart: unless-stopped
+    environment:
+      REPOSITORY_URL: ${REPOSITORY_URL}
+      REPOSITORY_TOKEN: ${REPOSITORY_TOKEN}
+      NTFY_URL: ${NTFY_URL}
+      NTFY_TOKEN: ${NTFY_TOKEN}
+    volumes:
+      - app-data:/data
+    networks:
+      - nats
+
+volumes:
+  app-data:
+
+networks:
+  nats:
+    external: true
