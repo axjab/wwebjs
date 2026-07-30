@@ -6,7 +6,9 @@ PROJECT_ROOT="$(dirname "$SCRIPT_DIR")"
 
 REGISTRY="ghcr.io/axjab"
 
-sudo docker build --no-cache \
+# add/remove --no-cache based on need to rebuild from scratch or not
+  # --no-cache \
+sudo docker build \
   --build-arg VERSION="$VERSION" \
   -t "$REGISTRY/${PKG}:${VERSION}" \
   -t "$REGISTRY/${PKG}:latest" \

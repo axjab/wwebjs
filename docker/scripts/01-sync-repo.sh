@@ -4,21 +4,16 @@ set -euo pipefail
 : "${REPOSITORY_URL:?Missing REPOSITORY_URL}"
 : "${REPOSITORY_TOKEN:?Missing REPOSITORY_TOKEN}"
 
-REPO=/data/repo
+REPO=/plugins
+
+echo "$REPOSITORY_URL"
+echo "$REPOSITORY_TOKEN"
 
 if [ ! -d "${REPO}/.git" ]; then
-    echo "Cloning repository..."
-
-    git -c http.extraHeader="Authorization: Bearer ${REPOSITORY_TOKEN}" \
-        clone \
-        "${REPOSITORY_URL}" \
-        "${REPO}"
+    echo "Cloning plugins repository..."
+    git clone "https://x-access-token:${REPOSITORY_TOKEN}@${REPOSITORY_URL#https://}" "${REPO}"
 else
-    echo "Updating repository..."
-
-    git -C "${REPO}" \
-        -c http.extraHeader="Authorization: Bearer ${REPOSITORY_TOKEN}" \
-        fetch origin
-
+    echo "Updating plugins repository..."
+    git -C "${REPO}" fetch origin
     git -C "${REPO}" reset --hard origin/master
 fi

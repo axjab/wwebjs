@@ -23,6 +23,17 @@
 const { Client, LocalAuth } = require('whatsapp-web.js');
 const qrcode = require('qrcode-terminal');
 
+process.on('SIGTERM', async () => {
+  try {
+	console.log('Received SIGTERM, shutting down foo...');
+    await client.destroy();
+  } catch (err) {
+    console.error('Error during shutdown:', err);
+  } finally {
+    process.exit(0);
+  }
+});
+
 // TODO: IMPORT PLUGINS IF NOT EMPTY
 
 const client = new Client(
@@ -76,14 +87,6 @@ client.on('message_create', message => {
 	  	client.sendMessage(sender, 'I love you too! ❤️');
 	}
 
-});
-
-// message media [UNTESTED]
-client.on('message', async (msg) => {
-    if (msg.hasMedia) {
-        const media = await msg.downloadMedia();
-        console.log("! Message has media!")
-    }
 });
 
 client.initialize();
