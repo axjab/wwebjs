@@ -1,6 +1,8 @@
 #!/bin/bash
 set -euo pipefail
 
-cd /data/repo
+# cd /data/repo
+
+echo "Starting wwebjs..."
 
 exec npm start
