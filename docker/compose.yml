@@ -10,12 +10,14 @@ services:
       NTFY_URL: ${NTFY_URL}
       NTFY_TOKEN: ${NTFY_TOKEN}
     volumes:
-      - app-data:/data
+      - /srv/log:/logs
+      - /data/wwebjs:/data
+      - wwebjs-plugins:/plugins  # pulled from REPOSITORY_URL at deployment
     networks:
       - nats
 
 volumes:
-  app-data:
+  wwebjs-plugins:
 
 networks:
   nats:

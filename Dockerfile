@@ -16,8 +16,10 @@ RUN npm ci --omit=dev
 COPY . .
 
 RUN chmod +x /app/docker/entrypoint.sh \
-    /app/docker/scripts/*.sh
+    /app/docker/scripts/*.sh && \
+    mkdir -p /logs
 
+VOLUME ["/logs"]
 VOLUME ["/data"]
 VOLUME ["/plugins"]
 
