@@ -23,6 +23,7 @@
 const { Client, LocalAuth } = require('whatsapp-web.js');
 const qrcode = require('qrcode-terminal');
 
+// not doing shit
 process.on('SIGTERM', async () => {
   try {
 	console.log('Received SIGTERM, shutting down foo...');
@@ -60,7 +61,6 @@ client.on('qr', qr => {
 // Listening to all incoming messages
 client.on('message_create', message => {
 	// TODO: INTRODUCE DEBUG MODE
-	// TODO: LOG TO STDOUT
 	// TODO: LOG TO /logs
 	// TODO: DELIVER PUBLISH TO NATS
 	// TODO: NOTIFY ON FAILURE
